@@ -1,0 +1,94 @@
+<<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Event</title>
+<link rel="stylesheet" href="ProjectStyle.css"/>
+</head>
+
+<body>
+	<div class="topnav">
+  <h1 style="font-size: 30px;" class="active" href="#home">Create Event</h1>
+		 <div class="container">
+  <form method="post" id="edit">
+  
+	  
+	  <label>Date: </label>
+  <input type="text" id="Date" placeholder="Date"/><br />
+	  
+	  <label>Location: </label>
+  <input type="text" id="Location" placeholder="Location"/><br />
+	  
+	  <label>PublishOnline: </label>
+  <input type="text" id="PublishOnline" placeholder="PublishOnline"/><br />
+	  
+	  <label>EventID: </label>
+  <input type="text" id="EventID" placeholder="EventID"/><br />
+	  
+	  <label>EndTime: </label>
+  <input type="text" id="EndTime" placeholder="EndTime"/><br />
+	  
+	  <label>price: </label>
+  <input type="text" id="price" placeholder="price"/><br />
+	  <label>StartTime: </label>
+  <input type="text" id="StartTime" placeholder="StartTime"/><br />
+	  
+	    <label>Name: </label>
+  <input type="text" id="Name" placeholder="Name"/><br />
+  
+  
+ <button class="w3-button w3-black w3-round-xxlarge" style="background-color:purple;"> <input style="background-color:purple; border: none; color: white" type="submit" value="Submit" /> </button>
+			 
+</form>
+		
+		 <button  onclick="location.href = 'Project.html';" class="w3-button w3-black w3-round-xxlarge" style="background-color: purple; ">Back</button> 
+			
+			 
+			 </div>
+	
+		<script>
+			
+edit.onsubmit = async (e) => {
+    e.preventDefault();
+	
+var EventID = document.getElementById("EventID").value
+var name = document.getElementById("Name").value;
+var date = document.getElementById("Date").value;
+var startTime = document.getElementById("StartTime").value;
+var EndTime = document.getElementById("EndTime").value;
+var Location = document.getElementById("Location").value;
+var publish = document.getElementById("PublishOnline").value;
+var price = document.getElementById("price").value;	 
+	
+	
+fetch('https://w1skozpr2m.execute-api.us-east-2.amazonaws.com/SecondTry/Eventfunction', {
+method: 'POST',
+body: JSON.stringify({
+
+  EventID : EventID,
+  Name : name,
+  Date : date,
+  StartTime : startTime,
+  EndTime : EndTime,
+  Location : Location,
+  PublishOnline : publish,
+  price : price
+}),
+	
+headers: {
+"Content-type": "application/json; charset=UTF-8"
+}
+})
+.then(response => response.json())
+.then(json => console.log(json))
+
+window.confirm("Event Created, Thank you!")
+setTimeout("location.href = 'Project.html';",10);
+
+};
+			
+			
+			
+    </script>
+</body>
+</html>

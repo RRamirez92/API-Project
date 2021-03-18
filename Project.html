@@ -1,0 +1,88 @@
+<!doctype html>
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="ProjectStyle.css"/>
+<!--<script src="javascript.js"></script>  -->
+<title></title>
+</head>
+
+<body style="background-color: white;">
+<div class="topnav">
+  <h1 style="font-size: 30px;" class="active" href="#home">Home</h1>
+</div> 
+
+  <div class="container">
+    <form name="loginForm" method="post" action="Login.html">
+
+		<p style="visibility: hidden" id = "test"></p>
+		
+<p>Email:</p>
+<input type="text" id="Email" size=25 name="Email">
+
+<p>Password:</p>
+<input type="Password" id = "Password" size=25 name="Password">
+
+<input type="Reset">
+<input type="submit" onclick="return check(this.form)" value="Login">
+
+
+</form>
+	</div>
+<script language="javascript">
+
+function check(form)
+{
+	
+var x = document.getElementById('Email').value
+var y = document.getElementById('Password').value
+var result = false;
+	
+fetch('https://d9jihpko71.execute-api.us-east-2.amazonaws.com/Best/UsernameFunction/'+x)
+    .then(res => res.json())
+    .then(data => {
+	
+	document.getElementById('test').innerHTML = data.Password;
+	
+	
+}).catch(err => console.error(err));
+	
+	
+
+     var z = document.getElementById('test').innerHTML
+	
+	 if(y == z){
+		return true;
+	}
+	
+	// alert("Error Password or Username")
+	return result
+	
+}
+	/*
+fetch("https://d9jihpko71.execute-api.us-east-2.amazonaws.com/A/UsernameFunction/:userid", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+	
+	
+	
+if(form.userid.value == "v-roram@microsoft.com" && form.pwd.value == "EventID")
+{
+	return true;
+}
+else
+{
+	alert("Error Password or Username")
+	return false;
+}
+}*/
+</script>
+<hr/>
+	<br/>
+   <a href="forgottenPassword.html">Forgot Password?</a><br>
+            <a href="CreateEvent.html">Create Event</a>
+
+
+	
+</body>
+</html>

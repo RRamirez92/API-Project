@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ModifyEvent</title>
+<link rel="stylesheet" href="ProjectStyle.css"/>
+<script src="PlaceHolder.js"></script>	
+</head>
+
+<body>
+	<div class="topnav">
+  <h1 style="font-size: 30px;" class="active" href="#home">Modify Event</h1>
+		 <div class="container">
+			 <button onclick="myFunction()">Populate</button>
+			 
+  <form method="post" id="edit">
+  
+	  <h3 style="color: purple">EventID: 9453994 </h3> <br/><br/>
+	  
+	  
+	  <label>Date: </label>
+  <input type="text" name = "Date" id="Date" placeholder="Date"><br />
+	  
+	  <label>Location: </label>
+  <input type="text" id="Location" placeholder="Location"/><br />
+	  
+	  <label>PublishOnline: </label>
+  <input type="text" id="PublishOnline" placeholder="PublishOnline"/><br />
+	  
+	  
+ 
+	  
+	  <label>EndTime: </label>
+  <input type="text" id="EndTime" placeholder="EndTime"/><br />
+	  
+	  <label>price: </label>
+  <input type="text" name="price" placeholder="price"/><br />
+	  <label>StartTime: </label>
+  <input type="text" id="StartTime" placeholder="StartTime"/><br />
+	  
+	    <label>Name: </label>
+  <input type="text" id="Name" placeholder="Name"/><br />
+  
+  
+ <button class="w3-button w3-black w3-round-xxlarge" style="background-color:purple;"> <input style="background-color:purple; border: none; color: white" type="submit" value="Submit" /> </button>
+			 
+</form>
+		
+		 <button  onclick="location.href = 'Login.html';" class="w3-button w3-black w3-round-xxlarge" style="background-color: purple; ">Back</button>
+			 
+			 </div>
+	
+		<script>
+			
+			function myFunction(){
+	fetch('https://w1skozpr2m.execute-api.us-east-2.amazonaws.com/SecondTry/Eventfunction/9453994')
+    .then(res => res.json())
+    .then(data => {
+	
+	document.getElementById('Date').placeholder = data.Date;
+		document.getElementById('Name').placeholder = data.Name;
+		document.getElementById('Location').placeholder = data.Location;
+		document.getElementById('PublishOnline').placeholder = data.PublishOnline;
+		document.getElementById('StartTime').placeholder = data.StartTime;
+		document.getElementById('EndTime').placeholder = data.EndTime;
+		document.getElementById('Price').placeholder = data.Price;
+	
+}).catch(err => console.error(err));
+
+}
+			
+			
+			
+edit.onsubmit = async (e) => {
+    e.preventDefault();
+	
+var name = document.getElementById("Name").value;
+var date = document.getElementById("Date").value;
+var startTime = document.getElementById("StartTime").value;
+var EndTime = document.getElementById("EndTime").value;
+var Location = document.getElementById("Location").value;
+	 
+	
+	
+fetch('https://w1skozpr2m.execute-api.us-east-2.amazonaws.com/SecondTry/Eventfunction/9453994', {
+method: 'PUT',
+body: JSON.stringify({
+
+  EventID : "9453994",
+  Name : name,
+  Date : date,
+  StartTime : startTime,
+  EndTime : EndTime,
+  Location : Location,
+  Location : Location,
+  PublishOnline : "true",
+  price : 140.99
+}),
+	
+headers: {
+"Content-type": "application/json; charset=UTF-8"
+}
+})
+.then(response => response.json())
+.then(json => console.log(json))
+};
+    </script>
+</body>
+</html>

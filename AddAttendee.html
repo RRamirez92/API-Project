@@ -1,0 +1,97 @@
+<<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Attendee</title>
+<link rel="stylesheet" href="ProjectStyle.css"/>
+</head>
+
+<body>
+	<div class="topnav">
+  <h1 style="font-size: 30px;" class="active" href="#home">Create Event</h1>
+		 <div class="container">
+  <form method="post" id="edit">
+  
+
+	  <label>city: </label>
+  <input type="text" id="city" placeholder="city"/><br />
+	  
+	  <label>Country: </label>
+  <input type="text" id="Country" placeholder="Country"/><br />
+	  
+	   <label>Email: </label>
+  <input type="text" id="Email" placeholder="Email"/><br />
+	  
+	  <label>First Name: </label>
+  <input type="text" id="first_name" placeholder="first_name"/><br />
+	  
+	  <label>Last Name: </label>
+  <input type="text" id="LastName" placeholder="LastName"/><br />
+	  
+	  <label>Organization: </label>
+  <input type="text" id="Organization" placeholder="Organization"/><br />
+	  <label>Position: </label>
+  <input type="text" id="Position" placeholder="Position"/><br />
+	  
+	    <label>State: </label>
+  <input type="text" id="State" placeholder="State"/><br />
+  
+  
+ <button class="w3-button w3-black w3-round-xxlarge" style="background-color:purple;"> <input style="background-color:purple; border: none; color: white" type="submit" value="Submit" /> </button>
+			 
+</form>
+		
+		 <button  onclick="Attendee List.href = 'Project.html';" class="w3-button w3-black w3-round-xxlarge" style="background-color: purple; ">Back</button>
+			 
+			 </div>
+	
+		<script>
+			
+edit.onsubmit = async (e) => {
+    e.preventDefault();
+	
+
+var city = document.getElementById("city").value;
+var Country = document.getElementById("Country").value;
+var Email = document.getElementById("Email").value;
+var first_name = document.getElementById("first_name").value;
+var LastName = document.getElementById("LastName").value;
+var Organization = document.getElementById("Organization").value;
+var Position = document.getElementById("Position").value;
+var State = document.getElementById("State").value;	 
+	
+	
+fetch('https://t4hz80znug.execute-api.us-east-2.amazonaws.com/SecondChance/AttendeeFunction', {
+method: 'POST',
+body: JSON.stringify({
+
+  Attendee_id : Math.floor((Math.random() * 10000) + 1),
+  city : city,
+  Country : Country,
+  Email : Email,
+  EventID : 9453994,
+  first_name : first_name,
+  LastName : LastName,
+  Organization : Organization,
+  Position : Position ,
+  State : State
+}),
+	
+headers: {
+"Content-type": "application/json; charset=UTF-8"
+}
+})
+.then(response => response.json())
+.then(json => console.log(json))
+
+window.confirm("Attendee Added, Thank you!")
+window.confirm("Attendee Added, Thank you!")
+setTimeout("location.href = 'AttendeeList.html';",10);
+
+};
+			
+			
+			
+    </script>
+</body>
+</html>

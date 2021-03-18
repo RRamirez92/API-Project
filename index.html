@@ -1,0 +1,69 @@
+<<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Create</title>
+<link rel="stylesheet" href="ProjectStyle.css"/>
+</head>
+
+<body>
+	<div class="topnav">
+  <h1 style="font-size: 30px; width:100%;" class="active" href="#home">Sign Up</h1>
+		 <div class="container">
+  <form method="post" id="edit">
+  
+	  
+	  <label>UserName: </label>
+  <input type="text" id="UserName" placeholder="UserName"/><br />
+	  
+<label>Email: </label>
+  <input type="text" id="Email" placeholder="Email"/><br />
+	  
+	  <label>Password: </label>
+  <input type="password" id="Password" placeholder="Password"/><br />
+	 
+	  
+ <button class="w3-button w3-black w3-round-xxlarge" style="background-color:purple;"> <input style="background-color:purple; border: none; color: white" type="submit" value="Submit" /> </button>
+			 
+</form>
+			 </div>
+	
+		<script>
+			
+edit.onsubmit = async (e) => {
+    e.preventDefault();
+	
+
+var UserName = document.getElementById("UserName").value
+var Email = document.getElementById("Email").value;
+var Password = document.getElementById("Password").value;
+
+	
+	
+fetch('https://d9jihpko71.execute-api.us-east-2.amazonaws.com/Best/UsernameFunction', {
+method: 'POST',
+body: JSON.stringify({
+
+ UserID: Math.floor((Math.random() * 10000) + 1),
+ Email : Email,
+ UserName : UserName,
+ Password : Password
+}),
+	
+headers: {
+"Content-type": "application/json; charset=UTF-8"
+}
+})
+.then(response => response.json())
+.then(json => console.log(json))
+
+window.confirm("Account Created, Thank you!")
+setTimeout("location.href = 'Project.html';",10);
+
+};
+			
+			
+			
+    </script>
+</body>
+</html>
